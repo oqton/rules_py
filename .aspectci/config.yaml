@@ -1,0 +1,6 @@
+---
+tasks:
+  buildifier:
+
+  test:
+    use_unreleased_flags: false
