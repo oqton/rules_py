@@ -1,0 +1,33 @@
+workspace(name = "import_path_bug")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_python",
+    sha256 = "8c8fe44ef0a9afc256d1e75ad5f448bb59b81aba149b8958f02f7b3a98f5d9b4",
+    strip_prefix = "rules_python-0.13.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.13.0.tar.gz",
+)
+
+# http_archive(
+#     name = "rules_py",
+#     sha256 = "0ad505f341e7a94ac44afb1fa77cd7aa95a65975b21bb3a71807b58090921990",
+#     strip_prefix = "rules_py-c89d9481d52d277e12cf0c88aa8c1c72a76500c7",
+#     url = "https://github.com/aspect-build/rules_py/archive/c89d9481d52d277e12cf0c88aa8c1c72a76500c7.tar.gz",
+# )
+
+local_repository(
+    name = "rules_py",
+    path = "../..",
+)
+
+load("@rules_py//py:repositories.bzl", "rules_py_dependencies")
+
+rules_py_dependencies()
+
+load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+
+python_register_toolchains(
+    name = "oqton_python",
+    python_version = "3.8",
+)
