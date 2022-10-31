@@ -1,0 +1,8 @@
+load("//py:defs.bzl", "py_binary")
+
+py_binary(
+    name = "first",
+    srcs = ["first_main.py"],
+    main = "first_main.py",
+    visibility = ["//py/tests/binary_calls_binary/second:__pkg__"],
+)

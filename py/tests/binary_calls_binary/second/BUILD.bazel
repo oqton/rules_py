@@ -1,0 +1,8 @@
+load("//py:defs.bzl", "py_test")
+
+py_test(
+    name = "second",
+    srcs = ["second_main.py"],
+    main = "second_main.py",
+    data = ["//py/tests/binary_calls_binary/first"],
+)
